@@ -3,6 +3,7 @@
 </div>
 
 
+<video src="./assets/hasten_demo.mp4" controls></video>
 Quickly switch your open buffers with custom keybinds on fly.
 
 ## About
