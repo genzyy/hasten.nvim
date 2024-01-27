@@ -28,6 +28,9 @@ M.create_user_commands = function(config, default_maps)
 
     if sub_key == nil then
       return
+    elseif #sub_key > 1 then
+      print(vim.inspect("Should be only one sub key!"))
+      return
     end
 
     local remap = utils._map_current_buffer(main_key, sub_key)
