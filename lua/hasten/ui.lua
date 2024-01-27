@@ -13,8 +13,8 @@ ui.win_config = {
 --- @return integer
 ui.show_window = function(opts, cb)
   ui.win = popup.create(opts, {
-    title = "Switcher",
-    highlight = "Switcherpopup",
+    title = "Hasten",
+    highlight = "Hastenpopup",
     line = math.floor(((vim.o.lines - ui.win_config.height) / 2) - 1),
     col = math.floor((vim.o.columns - ui.win_config.width) / 2),
     minheight = ui.win_config.height,
@@ -24,7 +24,7 @@ ui.show_window = function(opts, cb)
   })
 
   local bufnr = vim.api.nvim_win_get_buf(ui.win)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "q", ":ToggleViewMaps<CR>", { silent = true })
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "q", ":HastenViewMaps<CR>", { silent = true })
 
   return bufnr
 end

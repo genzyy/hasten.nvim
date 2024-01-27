@@ -1,4 +1,4 @@
-local utils = require("switcher.utils")
+local utils = require("hasten.utils")
 local command = vim.api.nvim_create_user_command
 local keymap = vim.keymap
 local default_opts = {
@@ -14,10 +14,10 @@ M._view_maps = false
 
 M._maps = {}
 
---- @param config SwitcherConfig
+--- @param config HastenConfig
 M.create_user_commands = function(config, default_maps)
   local main_key = config.main_key
-  command("MapCurrBuf", function(args)
+  command("HastenMapBuf", function(args)
     local sub_key = args.fargs[1]
     local curr_bufnr = utils.get_current_bufnr()
 
@@ -32,13 +32,11 @@ M.create_user_commands = function(config, default_maps)
 
     local remap = utils._map_current_buffer(main_key, sub_key)
 
-    print(vim.inspect(default_maps))
-
     keymap.set("n", remap, function() utils.set_current_bufnr(curr_bufnr) end, { silent = true })
     M._maps[remap] = vim.fn.expand("%")
   end, default_opts)
 
-  command("ToggleViewMaps", function()
+  command("HastenViewMaps", function()
     if M._view_maps == false then
       M._view_maps = true
       utils.show_remaps(M._maps)
@@ -48,7 +46,7 @@ M.create_user_commands = function(config, default_maps)
     end
   end, default_opts)
 
-  command("ClearMaps", function()
+  command("HastenClearMaps", function()
     for k, _ in pairs(M._maps) do
       local _, err = pcall(function()
         keymap.del("n", k)

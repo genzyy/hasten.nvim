@@ -1,8 +1,8 @@
-local commands = require("switcher.commands")
-local utils = require("switcher.utils")
+local commands = require("hasten.commands")
+local utils = require("hasten.utils")
 local M = {}
 
---- @class SwitcherConfig
+--- @class HastenConfig
 --- @field main_key "control" | "alt" |  "leader"
 --- @field window_properties table
 local switcher_config = {
@@ -17,10 +17,10 @@ local switcher_config = {
 
 local default_maps = vim.api.nvim_get_keymap("n")
 
---- @param cfg SwitcherConfig
+--- @param cfg HastenConfig
 M.setup = function(cfg)
   if cfg == nil then
-    print(vim.inspect("print set main key for switcher to work."))
+    print(vim.inspect("print set main key for hasten to work."))
     return
   end
 

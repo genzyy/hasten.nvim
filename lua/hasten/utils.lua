@@ -1,4 +1,4 @@
-local ui = require("switcher.ui")
+local ui = require("hasten.ui")
 local vim_api = vim.api
 local utils = {}
 
