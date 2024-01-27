@@ -24,4 +24,26 @@ end
 
 utils.close_remaps = function() ui.close_window() end
 
+
+--- @param main_key "control" | "alt" | "option"
+--- @param sub_key string
+--- @return string
+function utils._map_current_buffer(main_key, sub_key)
+  if main_key == "control" then
+    return "<C-" .. sub_key .. ">"
+  elseif main_key == "alt" then
+    return "<A-" .. sub_key .. ">"
+  else
+    return "<leader>" .. sub_key
+  end
+end
+
+--- @param parent table
+--- @param child table
+function utils._extend(parent, child)
+  for k, v in pairs(child) do
+    parent[k] = v
+  end
+end
+
 return utils
