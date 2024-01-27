@@ -15,6 +15,8 @@ local switcher_config = {
   }
 }
 
+local default_maps = vim.api.nvim_get_keymap("n")
+
 --- @param cfg SwitcherConfig
 M.setup = function(cfg)
   if cfg == nil then
@@ -25,7 +27,7 @@ M.setup = function(cfg)
   if cfg.main_key == nil or cfg == {} then
     utils._extend(switcher_config, cfg)
   end
-  commands.create_user_commands(cfg.main_key)
+  commands.create_user_commands(cfg, default_maps)
 end
 
 return M

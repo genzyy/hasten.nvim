@@ -14,8 +14,9 @@ M._view_maps = false
 
 M._maps = {}
 
---- @param main_key string
-M.create_user_commands = function(main_key)
+--- @param config SwitcherConfig
+M.create_user_commands = function(config, default_maps)
+  local main_key = config.main_key
   command("MapCurrBuf", function(args)
     local sub_key = args.fargs[1]
     local curr_bufnr = utils.get_current_bufnr()
@@ -31,6 +32,8 @@ M.create_user_commands = function(main_key)
 
     local remap = utils._map_current_buffer(main_key, sub_key)
 
+    print(vim.inspect(default_maps))
+
     keymap.set("n", remap, function() utils.set_current_bufnr(curr_bufnr) end, { silent = true })
     M._maps[remap] = vim.fn.expand("%")
   end, default_opts)
@@ -42,6 +45,23 @@ M.create_user_commands = function(main_key)
     else
       M._view_maps = false
       utils.close_remaps()
+    end
+  end, default_opts)
+
+  command("ClearMaps", function()
+    for k, _ in pairs(M._maps) do
+      local _, err = pcall(function()
+        keymap.del("n", k)
+      end)
+    end
+    for _, m in pairs(default_maps) do
+      local rhs = m.rhs
+      if rhs == nil then
+        rhs = function()
+          m.callback()
+        end
+      end
+      keymap.set("n", m.lhs, rhs)
     end
   end, default_opts)
 end

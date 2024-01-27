@@ -25,7 +25,7 @@ end
 utils.close_remaps = function() ui.close_window() end
 
 
---- @param main_key "control" | "alt" | "option"
+--- @param main_key "control" | "alt" | "leader"
 --- @param sub_key string
 --- @return string
 function utils._map_current_buffer(main_key, sub_key)
