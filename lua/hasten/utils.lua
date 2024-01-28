@@ -46,4 +46,12 @@ function utils._extend(parent, child)
   end
 end
 
+--- @param tb table
+--- @return integer
+function utils._table_len(tb)
+  local len = 0
+  for _, _ in pairs(tb) do len = len + 1 end
+  return len
+end
+
 return utils
