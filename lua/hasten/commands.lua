@@ -19,6 +19,7 @@ M._user_defined_maps = {}
 --- @param config HastenConfig
 --- @param default_maps table
 M.create_user_commands = function(config, default_maps)
+  M._user_defined_maps = config.predefined_keymaps
   local main_key = config.main_key
   command("HastenMapBuf", function(args)
     local sub_key = args.fargs[1]
@@ -67,24 +68,22 @@ M.create_user_commands = function(config, default_maps)
       end
       keymap.set("n", m.lhs, rhs)
     end
+    M._user_defined_maps = config.predefined_keymaps
   end, default_opts)
 
   command("HastenUsePredefinedMaps", function()
-    if utils._table_len(config.predefined_keymaps) == 0 then
-      print(vim.inspect("No predefined maps found."))
-      return
-    elseif utils._table_len(M._user_defined_maps) == utils._table_len(config.predefined_keymaps) then
-      print(vim.inspect("Slots full for predefined maps, pass o to overwrite."))
+    if utils._table_len(M._user_defined_maps) == 0 then
+      print(vim.inspect("Not enough user defined maps provided."))
       return
     end
 
-    local next_keymap = table.remove(config.predefined_keymaps, 1)
+    local pd_map = table.remove(M._user_defined_maps, 1)
     local curr_bufnr = utils.get_current_bufnr()
 
-    keymap.set("n", next_keymap, function()
+    keymap.set("n", pd_map, function()
       utils.set_current_bufnr(curr_bufnr)
     end, { silent = true })
-    M._maps[next_keymap] = vim.fn.expand("%")
+    M._maps[pd_map] = vim.fn.expand("%")
   end, default_opts)
 end
 
