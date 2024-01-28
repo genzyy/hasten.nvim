@@ -25,7 +25,7 @@ M.setup = function(cfg)
   end
 
   if cfg.main_key == nil or cfg == {} then
-    utils._extend(switcher_config, cfg)
+    cfg = utils._extend(switcher_config, cfg)
   end
   commands.create_user_commands(cfg, default_maps)
 end

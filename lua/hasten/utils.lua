@@ -40,10 +40,12 @@ end
 
 --- @param parent table
 --- @param child table
+--- @return table
 function utils._extend(parent, child)
   for k, v in pairs(child) do
     parent[k] = v
   end
+  return parent
 end
 
 return utils
