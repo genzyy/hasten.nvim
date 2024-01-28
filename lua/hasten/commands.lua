@@ -1,4 +1,5 @@
 local utils = require("hasten.utils")
+local logger = require("hasten.logger")
 local command = vim.api.nvim_create_user_command
 local keymap = vim.keymap
 local default_opts = {
@@ -26,14 +27,14 @@ M.create_user_commands = function(config, default_maps)
     local curr_bufnr = utils.get_current_bufnr()
 
     if curr_bufnr == nil then
-      print(vim.inspect("Current buffer is empty."))
+      logger.info("Current buffer is empty.")
       return
     end
 
     if sub_key == nil then
       return
     elseif #sub_key > 1 then
-      print(vim.inspect("Should be only one sub key!"))
+      logger.info("Should be only one sub key!")
       return
     end
 
@@ -73,7 +74,7 @@ M.create_user_commands = function(config, default_maps)
 
   command("HastenUsePredefinedMaps", function()
     if utils._table_len(M._user_defined_maps) == 0 then
-      print(vim.inspect("Not enough user defined maps provided."))
+      logger.warn("Not enough user defined maps provided.")
       return
     end
 
