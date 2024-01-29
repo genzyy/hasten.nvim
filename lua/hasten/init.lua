@@ -1,5 +1,6 @@
 local commands = require("hasten.commands")
 local utils = require("hasten.utils")
+local logger = require("hasten.logger")
 local M = {}
 
 --- @class HastenConfig
@@ -21,12 +22,7 @@ local default_maps = vim.api.nvim_get_keymap("n")
 
 --- @param cfg HastenConfig
 M.setup = function(cfg)
-  if cfg == nil then
-    print(vim.inspect("print set main key for hasten to work."))
-    return
-  end
-
-  if cfg.main_key == nil or cfg == {} then
+  if cfg.main_key == nil or cfg == nil or cfg == {} then
     cfg = utils._extend(hasten_config, cfg)
   end
 

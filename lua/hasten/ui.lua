@@ -3,8 +3,8 @@ local ui = {}
 
 ui.win = nil
 ui.win_config = {
-  height = 30,
-  width = 60,
+  height = 15,
+  width = 90,
   borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 }
 

@@ -39,9 +39,10 @@ function utils._map_current_buffer(main_key, sub_key)
 end
 
 --- @param parent table
---- @param child table
+--- @param child table?
 --- @return table
 function utils._extend(parent, child)
+  child = child ~= nil and child or {}
   for k, v in pairs(child) do
     parent[k] = v
   end
