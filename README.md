@@ -3,7 +3,11 @@
 </div>
 
 
-<video src="./assets/hasten_demo.mp4" controls></video>
+
+
+https://github.com/genzyy/hasten.nvim/assets/48408336/c4e4c736-e937-4d1f-96bb-13a4567914ef
+
+
 Quickly switch your open buffers with custom keybinds on fly.
 
 ## About
