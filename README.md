@@ -40,8 +40,34 @@ return {
 ## Commands
 
 - `HastenMapBuff <sub_key>`: Map currently active buffer to passed sub key. Note that the sub_key argument cannot be more than 1 key for now.
+
 - `HastenViewMaps`: View all Hasten buffer maps.
-- `HastenClearMaps`: Clear all hasten maps and if any default keymaps were overwritten, restore them.
+
+- `HastenClearMaps`: Clear all hasten maps and if any default keymaps were overwritten, restore them. Also clears predefined maps if they are mapped to any active buffer.
+
+- `HastenUsePredefinedMaps`: Use predefined maps from config and map current buffer to first mapping in the provided list. As you map the buffers, the maps are used and are removed from the list of available pre defined user maps.
+
+
+### My Config
+```lua
+return {
+  "genzyy/hasten.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
+    require("hasten").setup({
+      predefined_keymaps = {
+        "<C-x>",
+        "<C-c>",
+      }
+    })
+
+    vim.keymap.set("n", "<leader>h", ":HastenUsePredefinedMaps<CR>", { silent = true })
+    vim.keymap.set("n", "<leader>g", ":HastenViewMaps<CR>", { silent = true })
+  end,
+}
+```
 
 
 ### Note
