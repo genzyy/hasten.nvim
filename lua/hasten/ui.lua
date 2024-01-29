@@ -10,10 +10,11 @@ ui.win_config = {
 
 --- @param opts table
 --- @param cb function
+--- @param custom_title string?
 --- @return integer
-ui.show_window = function(opts, cb)
+ui.show_window = function(opts, cb, custom_title)
   ui.win = popup.create(opts, {
-    title = "Hasten",
+    title = custom_title or "Hasten",
     highlight = "Hastenpopup",
     line = math.floor(((vim.o.lines - ui.win_config.height) / 2) - 1),
     col = math.floor((vim.o.columns - ui.win_config.width) / 2),

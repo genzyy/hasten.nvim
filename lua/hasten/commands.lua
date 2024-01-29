@@ -59,6 +59,9 @@ M.create_user_commands = function(config, default_maps)
       local _, err = pcall(function()
         keymap.del("n", k)
       end)
+      if err ~= nil then
+        logger.error("Error deleting keymaps!")
+      end
     end
     for _, m in pairs(default_maps) do
       local rhs = m.rhs

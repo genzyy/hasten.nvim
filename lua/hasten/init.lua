@@ -6,7 +6,7 @@ local M = {}
 --- @field main_key "control" | "alt" |  "leader"
 --- @field window_properties table
 --- @field predefined_keymaps table
-local switcher_config = {
+local hasten_config = {
   main_key = "control",
   window_properties = {
     --- @type integer
@@ -27,7 +27,7 @@ M.setup = function(cfg)
   end
 
   if cfg.main_key == nil or cfg == {} then
-    utils._extend(switcher_config, cfg)
+    utils._extend(hasten_config, cfg)
   end
 
   commands.create_user_commands(cfg, default_maps)
