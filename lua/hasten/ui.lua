@@ -22,6 +22,10 @@ ui.show_window = function(opts, cb, custom_title)
     minwidth = ui.win_config.width,
     borderchars = ui.win_config.borderchars,
     callback = cb,
+    finalize_callback = function(one, two)
+      print(vim.inspect(one))
+      print(vim.inspect(two))
+    end
   })
 
   local bufnr = vim.api.nvim_win_get_buf(ui.win)
