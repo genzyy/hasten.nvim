@@ -24,7 +24,6 @@ end
 
 utils.close_remaps = function() ui.close_window() end
 
-
 --- @param main_key "control" | "alt" | "leader"
 --- @param sub_key string
 --- @return string
@@ -53,7 +52,9 @@ end
 --- @return integer
 function utils._table_len(tb)
   local len = 0
-  for _, _ in pairs(tb) do len = len + 1 end
+  for _, _ in pairs(tb) do
+    len = len + 1
+  end
   return len
 end
 
