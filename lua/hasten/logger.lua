@@ -7,11 +7,14 @@ local LOG_LEVEL = vim.log.levels
 --- @field err_lvl integer?
 local Logger = {}
 
-function Logger:new()
+--- @param info_lvl integer?
+--- @param warn_lvl integer?
+--- @param err_lvl integer?
+function Logger:new(info_lvl, warn_lvl, err_lvl)
   local logger = setmetatable({
-    info_lvl = LOG_LEVEL.INFO,
-    warn_lvl = LOG_LEVEL.WARN,
-    err_lvl = LOG_LEVEL.ERROR,
+    info_lvl = info_lvl or LOG_LEVEL.INFO,
+    warn_lvl = warn_lvl or LOG_LEVEL.WARN,
+    err_lvl = err_lvl or LOG_LEVEL.ERROR,
   }, self)
 
   return logger
