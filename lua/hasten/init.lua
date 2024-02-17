@@ -1,6 +1,5 @@
 local commands = require("hasten.commands")
 local utils = require("hasten.utils")
-local logger = require("hasten.logger")
 local M = {}
 
 --- @class HastenConfig
@@ -15,7 +14,7 @@ local hasten_config = {
     --- @type integer
     height = 60,
     predefined_keymaps = {},
-  }
+  },
 }
 
 local default_maps = vim.api.nvim_get_keymap("n")

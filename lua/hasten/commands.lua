@@ -1,5 +1,5 @@
 local utils = require("hasten.utils")
-local logger = require("hasten.logger")
+local Logger = require("hasten.logger")
 local command = vim.api.nvim_create_user_command
 local keymap = vim.keymap
 local default_opts = {
@@ -10,6 +10,8 @@ local default_opts = {
 }
 
 local M = {}
+
+local logger = Logger:new()
 
 M._view_maps = false
 
@@ -56,9 +58,7 @@ M.create_user_commands = function(config, default_maps)
 
   command("HastenClearMaps", function()
     for k, _ in pairs(M._maps) do
-      local _, err = pcall(function()
-        keymap.del("n", k)
-      end)
+      local _, err = pcall(function() keymap.del("n", k) end)
       if err ~= nil then
         logger.error("Error deleting keymaps!")
       end
@@ -66,9 +66,7 @@ M.create_user_commands = function(config, default_maps)
     for _, m in pairs(default_maps) do
       local rhs = m.rhs
       if rhs == nil then
-        rhs = function()
-          m.callback()
-        end
+        rhs = function() m.callback() end
       end
       keymap.set("n", m.lhs, rhs)
     end
@@ -84,9 +82,7 @@ M.create_user_commands = function(config, default_maps)
     local pd_map = table.remove(M._user_defined_maps, 1)
     local curr_bufnr = utils.get_current_bufnr()
 
-    keymap.set("n", pd_map, function()
-      utils.set_current_bufnr(curr_bufnr)
-    end, { silent = true })
+    keymap.set("n", pd_map, function() utils.set_current_bufnr(curr_bufnr) end, { silent = true })
     M._maps[pd_map] = vim.fn.expand("%")
   end, default_opts)
 end
