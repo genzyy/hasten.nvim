@@ -17,12 +17,13 @@ function Logger:new()
   return logger
 end
 
+--- @param message string
 function Logger:info(message) notify(message, self.info_lvl) end
 
 --- @param message string
-function Logger:warn(message) notify(message, LOG_LEVEL.WARN) end
+function Logger:warn(message) notify(message, self.warn_lvl) end
 
 --- @param message string
-function Logger:error(message) notify(message, LOG_LEVEL.ERROR) end
+function Logger:error(message) notify(message, self.err_lvl) end
 
 return Logger
