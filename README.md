@@ -1,11 +1,6 @@
 <div align=center>
 <h1>hasten.nvim</h1>
-<
-
-
-
-
-/div>
+</div>
 
 
 
